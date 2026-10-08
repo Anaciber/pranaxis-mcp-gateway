@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Anaciber/pranaxis-mcp-gateway",
+  "description": "Consistency verdicts for MCP tool calls: a transparent proxy that stops two agents from consuming the same resource version twice, with a certificate per decision.",
+  "repository": {"url": "https://github.com/Anaciber/pranaxis-mcp-gateway", "source": "github"},
+  "version": "0.3.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "pranaxis-mcp-gateway",
+      "version": "0.3.0",
+      "transport": {"type": "stdio"},
+      "runtimeHint": "uvx",
+      "packageArguments": [
+        {"type": "named", "name": "--agent-id", "description": "identifier of the agent this gateway serves", "isRequired": true, "format": "string"},
+        {"type": "named", "name": "--rules", "description": "bundled rules name (vivado-ross, github-official, postgres-generic) or path to a rules JSON", "isRequired": false, "format": "string"},
+        {"type": "positional", "valueHint": "child_command", "description": "-- followed by the child MCP server command (stdio)", "isRequired": true}
+      ]
+    }
+  ]
+}

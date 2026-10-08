@@ -1,0 +1,29 @@
+{
+ "server": "postgres-generic",
+ "description": "Example for an SQL MCP server exposing a 'query' tool: writes keyed by table and primary key",
+ "consume": [
+  {
+   "tool": "query",
+   "when": {
+    "sql": "(?is)^\\s*(?:UPDATE|DELETE\\s+FROM)\\s+(?P<table>[\\w.]+)\\b.*?\\bWHERE\\b.*?\\b(?P<key>id|order_id|payment_id|booking_id)\\s*=\\s*'?(?P<value>[\\w-]+)'?"
+   },
+   "resource": "{table}/{key}={value}",
+   "note": "row-level consumption; version from the gateway counter"
+  },
+  {
+   "tool": "query",
+   "when": {
+    "sql": "(?is)^\\s*INSERT\\s+INTO\\s+(?P<table>[\\w.]+)\\b.*?\\((?P<cols>[^)]*)\\)\\s*VALUES\\s*\\((?P<vals>[^)]*)\\)"
+   },
+   "resource": "{table}/insert"
+  },
+  {
+   "tool": "execute",
+   "when": {
+    "sql": "(?is)^\\s*(?:UPDATE|DELETE|INSERT)\\b"
+   },
+   "resource": "sql/{$tool}"
+  }
+ ],
+ "release": []
+}

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pranaxis-mcp-gateway"
+version = "0.3.0"
+description = "Consistency verdicts for MCP tool calls: a transparent stdio proxy that stops two agents from consuming the same resource version twice."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [{name = "Arignatxa S.L.", email = "ignacio@kiwih.org"}]
+keywords = ["mcp", "agents", "consistency", "lost-update", "gateway", "proxy"]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: Apache Software License", "Operating System :: OS Independent", "Topic :: Software Development :: Libraries"]
+dependencies = []
+
+[project.urls]
+Homepage = "https://pranaxis.eu"
+Repository = "https://github.com/Anaciber/pranaxis-mcp-gateway"
+
+[project.scripts]
+pranaxis-mcp = "pranaxis_gateway.proxy:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pranaxis_gateway = ["rules/*.json"]

@@ -1,0 +1,64 @@
+{
+ "server": "vivado-ross",
+ "description": "AMD Ross Vivado MCP server 2026.9.1: consumption of runs, design and session",
+ "consume": [
+  {
+   "tool": "vivado_execute",
+   "when": {
+    "command": "^\\s*(?:launch_runs|reset_runs?)\\b"
+   },
+   "resource": "{session_id}/{run}",
+   "each": {
+    "arg": "command",
+    "regex": "\\b(?:launch_runs|reset_runs?)\\s+(?P<run>[^\\s;\\[\\]-][^\\s;\\[\\]]*)(?:\\s+(?P<run2>[^\\s;\\[\\]-][^\\s;\\[\\]]*))?"
+   },
+   "note": "run-level writes"
+  },
+  {
+   "tool": "vivado_execute",
+   "when": {
+    "command": "^\\s*(?:synth_design|opt_design|place_design|route_design|phys_opt_design|write_bitstream|write_device_image|write_checkpoint|save_constraints)\\b"
+   },
+   "resource": "{session_id}/design"
+  },
+  {
+   "tool": "vivado_execute",
+   "when": {
+    "command": "^\\s*(?:close_project|create_project|add_files|remove_files|set_property)\\b"
+   },
+   "resource": "{session_id}/project"
+  },
+  {
+   "tool": "vivado_status",
+   "when": {
+    "action": "^(?:reset_run|cancel_and_relaunch)$"
+   },
+   "resource": "{session_id}/{run_name}"
+  },
+  {
+   "tool": "vivado_stop",
+   "resource": "{session_id}/session"
+  }
+ ],
+ "release": [
+  {
+   "tool": "vivado_execute",
+   "when": {
+    "command": "^\\s*wait_on_run\\b"
+   },
+   "resource": "{session_id}/{run}",
+   "each": {
+    "arg": "command",
+    "regex": "\\bwait_on_run\\s+(?P<run>[^\\s;\\[\\]]+)"
+   }
+  },
+  {
+   "tool": "vivado_status",
+   "when": {
+    "action": "^runs$"
+   },
+   "resource": "{session_id}/{run}",
+   "response": "\\b(?P<run>\\w+_\\d+)\\b[^\\n]{0,120}?(?:Complete|100%)"
+  }
+ ]
+}
