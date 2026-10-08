@@ -3,7 +3,7 @@
   "name": "io.github.Anaciber/pranaxis-mcp-gateway",
   "description": "Consistency verdicts for MCP tool calls: no two agents consume the same resource version twice.",
   "repository": {"url": "https://github.com/Anaciber/pranaxis-mcp-gateway", "source": "github"},
-  "version": "0.3.0",
+  "version": "0.3.1",
   "packages": [
     {
       "registryType": "pypi",
