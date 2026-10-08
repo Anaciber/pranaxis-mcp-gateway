@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pranaxis-mcp-gateway"
-version = "0.3.0"
+version = "0.3.1"
 description = "Consistency verdicts for MCP tool calls: a transparent stdio proxy that stops two agents from consuming the same resource version twice."
 readme = "README.md"
 license = {text = "Apache-2.0"}
