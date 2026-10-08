@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Anaciber/pranaxis-mcp-gateway",
-  "description": "Consistency verdicts for MCP tool calls: a transparent proxy that stops two agents from consuming the same resource version twice, with a certificate per decision.",
+  "description": "Consistency verdicts for MCP tool calls: no two agents consume the same resource version twice.",
   "repository": {"url": "https://github.com/Anaciber/pranaxis-mcp-gateway", "source": "github"},
   "version": "0.3.0",
   "packages": [
